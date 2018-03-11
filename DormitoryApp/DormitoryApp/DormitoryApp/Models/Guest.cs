@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 
+using System.Diagnostics;
+
 namespace DormitoryApp.Models
 {
     public class Guest 
@@ -17,8 +19,9 @@ namespace DormitoryApp.Models
             set
             {
                 ArrivalTimeString = value;
-                ArrivalTime = DateTime.ParseExact(value, "yyyy-MM-dd HH:mm:ss",
-                                       System.Globalization.CultureInfo.InvariantCulture);
+                ArrivalTime = DateTime.ParseExact(
+                    value, "yyyy-MM-dd HH:mm:ss",
+                    System.Globalization.CultureInfo.InvariantCulture);
             }
         }
     }
