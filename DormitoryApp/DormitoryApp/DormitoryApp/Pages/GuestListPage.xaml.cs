@@ -37,11 +37,10 @@ namespace DormitoryApp.Pages
         //    GuestsListView.SelectedGuest = null;
         //}
 
-        //async void AddGuest_Clicked(object sender, EventArgs e)
-        //{
-        //    //await Navigation.PushModalAsync(new NavigationPage(new NewGuestPage()));
-        //    return;
-        //}
+        async void AddGuest_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new NavigationPage(new NewGuestPage()));
+        }
 
         protected override void OnAppearing()
         {
