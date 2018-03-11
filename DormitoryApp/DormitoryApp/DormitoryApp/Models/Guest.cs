@@ -19,15 +19,9 @@ namespace DormitoryApp.Models
             set
             {
                 ArrivalTimeString = value;
-                try
-                {
-                    ArrivalTime = DateTime.ParseExact(value, "yyyy-MM-dd HH:mm:ss",
-                                           System.Globalization.CultureInfo.InvariantCulture);
-                }
-                catch
-                {
-                    Debug.WriteLine("DateTime input error");
-                }
+                ArrivalTime = DateTime.ParseExact(
+                    value, "yyyy-MM-dd HH:mm:ss",
+                    System.Globalization.CultureInfo.InvariantCulture);
             }
         }
     }

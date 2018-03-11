@@ -20,11 +20,10 @@ namespace DormitoryApp.Pages
         {
             InitializeComponent();
 
-
             guest = new Guest
             {
                 Name = "VOVOVOVO",
-                //ArrivalTimeString = "2009-05-08 14:40:52"
+                ArrivalTime = DateTime.Now
             };
 
             BindingContext = this;
