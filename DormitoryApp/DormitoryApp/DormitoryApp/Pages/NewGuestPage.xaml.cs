@@ -20,19 +20,20 @@ namespace DormitoryApp.Pages
         {
             InitializeComponent();
 
-            //guest = new Guest
-            //{
-            //    Name = "",
-            //    ArrivalTimeString = "2009-05-08 14:40:52"
-            //};
 
-            //BindingContext = this;
+            guest = new Guest
+            {
+                Name = "VOVOVOVO",
+                //ArrivalTimeString = "2009-05-08 14:40:52"
+            };
+
+            BindingContext = this;
         }
 
         async void Save_Clicked(object sender, EventArgs e)
         {
-            //MessagingCenter.Send(this, "AddGuest", guest);
-            //await Navigation.PopModalAsync();
+            MessagingCenter.Send(this, "AddGuest", guest);
+            await Navigation.PopModalAsync();
         }
     }
 }
