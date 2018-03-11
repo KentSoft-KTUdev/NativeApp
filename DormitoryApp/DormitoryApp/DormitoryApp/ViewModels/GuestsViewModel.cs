@@ -22,12 +22,12 @@ namespace DormitoryApp.ViewModels
             Guests = new ObservableCollection<Guest>();
             LoadGuestsCommand = new Command(async () => await ExecuteLoadGuestsCommand());
 
-            //MessagingCenter.Subscribe<NewGuestPage, Guest>(this, "AddGuest", async (obj, guest) =>
-            //{
-            //    var _guest = guest as Guest;
-            //    Guests.Add(_guest);
-            //    await DataStore.AddGuestAsync(_guest);
-            //});
+            MessagingCenter.Subscribe<NewGuestPage, Guest>(this, "AddGuest", async (obj, guest) =>
+            {
+                var _guest = guest as Guest;
+                Guests.Add(_guest);
+                await DataStore.AddGuestAsync(_guest);
+            });
         }
 
         async Task ExecuteLoadGuestsCommand()
