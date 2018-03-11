@@ -6,8 +6,8 @@
         <StackLayout VerticalOptions="CenterAndExpand"
                 HorizontalOptions="CenterAndExpand" >
             <Label Text="Please select" HorizontalOptions="Center" />
-            <Button Text="Guest"/>
-            <Button Text="Resident"/>
+            <Button Text="Guest" />
+            <Button Text="Resident" Clicked="Resident_Clicked"/>
             <Button Text="Guard"/>
             <Button Text="Admin"/>
         </StackLayout>

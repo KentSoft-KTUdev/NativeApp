@@ -16,5 +16,10 @@ namespace DormitoryApp.Pages
 		{
 			InitializeComponent ();
 		}
-	}
+
+        async void Resident_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new GuestListPage());
+        }
+    }
 }
