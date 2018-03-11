@@ -11,18 +11,17 @@ using DormitoryApp.Models;
 
 namespace DormitoryApp.Pages
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class NewGuestPage : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class NewGuestPage : ContentPage
+    {
         public Guest guest { get; set; }
-
         public NewGuestPage()
         {
             InitializeComponent();
 
             guest = new Guest
             {
-                Name = "VOVOVOVO",
+                Name = "VP",
                 ArrivalTime = DateTime.Now
             };
 
@@ -31,8 +30,14 @@ namespace DormitoryApp.Pages
 
         async void Save_Clicked(object sender, EventArgs e)
         {
+            guest.ArrivalTime += GuestTimePicker.Time;
             MessagingCenter.Send(this, "AddGuest", guest);
             await Navigation.PopModalAsync();
+        }
+
+        private void DatePicker_DateSelected(object sender, DateChangedEventArgs e)
+        {
+            guest.ArrivalTime = e.NewDate;
         }
     }
 }
