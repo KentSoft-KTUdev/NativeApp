@@ -4,16 +4,14 @@
              x:Class="DormitoryApp.Pages.NewGuestPage"
              Title="New Guest">
     <ContentPage.ToolbarItems>
-<!--        <ToolbarItem Text="Save" Clicked="Save_Clicked" />  -->
+       <ToolbarItem Text="Save" Clicked="Save_Clicked" />  
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout Spacing="20" Padding="15">
-            <!--
             <Label Text="Name" FontSize="Medium" />
             <Entry Text="{Binding Guest.Name}" FontSize="Small" />
-            <Label Text="yyyy-MM-dd HH:mm:ss" FontSize="Medium" />
+            <Label Text="Date" FontSize="Medium" />
             <Editor Text="{Binding Guest.ArrivalTimeString}" FontSize="Small" Margin="0" />
-            -->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

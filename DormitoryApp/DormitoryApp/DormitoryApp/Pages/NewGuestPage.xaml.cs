@@ -29,10 +29,10 @@ namespace DormitoryApp.Pages
             //BindingContext = this;
         }
 
-        //async void Save_Clicked(object sender, EventArgs e)
-        //{
-        //    MessagingCenter.Send(this, "AddGuest", guest);
-        //    await Navigation.PopModalAsync();
-        //}
+        async void Save_Clicked(object sender, EventArgs e)
+        {
+            //MessagingCenter.Send(this, "AddGuest", guest);
+            //await Navigation.PopModalAsync();
+        }
     }
 }
