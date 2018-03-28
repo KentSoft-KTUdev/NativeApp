@@ -26,7 +26,7 @@ namespace DormitoryApp.ViewModels
             {
                 var _guest = guest as Guest;
                 Guests.Add(_guest);
-                await DataStore.AddGuestAsync(_guest);
+                await GuestDataStore.AddMemberAsync(_guest);
             });
         }
 
@@ -40,7 +40,7 @@ namespace DormitoryApp.ViewModels
             try
             {
                 Guests.Clear();
-                var guests = await DataStore.GetGuestsAsync(true);
+                var guests = await GuestDataStore.GetMembersAsync(true);
                 foreach (var guest in guests)
                 {
                     Guests.Add(guest);
