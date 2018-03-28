@@ -8,7 +8,7 @@
             <Label Text="Please select" HorizontalOptions="Center" />
             <Button Text="Guest" />
             <Button Text="Resident" Clicked="Resident_Clicked"/>
-            <Button Text="Guard"/>
+            <Button Text="Guard" Clicked="Guard_Clicked"/>
             <Button Text="Admin" Clicked="Admin_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
