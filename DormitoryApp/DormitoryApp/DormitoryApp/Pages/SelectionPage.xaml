@@ -9,7 +9,7 @@
             <Button Text="Guest" />
             <Button Text="Resident" Clicked="Resident_Clicked"/>
             <Button Text="Guard"/>
-            <Button Text="Admin"/>
+            <Button Text="Admin" Clicked="Admin_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
