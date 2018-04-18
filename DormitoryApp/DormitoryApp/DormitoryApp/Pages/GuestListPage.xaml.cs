@@ -37,17 +37,14 @@ namespace DormitoryApp.Pages
         //    GuestsListView.SelectedGuest = null;
         //}
 
-        //async void OnGuestSelected(object sender, SelectedItemChangedEventArgs args)
-        //{
-        //    var Guest = args.SelectedItem as Guest;
-        //    if (Guest == null)
-        //        return;
-
-        //    await Navigation.PushAsync(new GuestDetailPage(new GuestDetailViewModel(Guest)));
-
-        //    // Manually deselect Guest.
-        //    GuestsListView.SelectedGuest = null;
-        //}
+        async void OnGuestSelected(object sender, SelectedItemChangedEventArgs args)
+        {
+            if (((ListView)sender).SelectedItem != null)
+            {
+                ((ListView)sender).SelectedItem = null;
+                await Navigation.PushModalAsync(new NavigationPage(new VisitListPage()));
+            }
+        }
 
         async void AddGuest_Clicked(object sender, EventArgs e)
         {
