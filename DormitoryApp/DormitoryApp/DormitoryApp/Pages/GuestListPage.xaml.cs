@@ -25,9 +25,9 @@ namespace DormitoryApp.Pages
             BindingContext = viewModel = new GuestsViewModel();
         }
 
-        //async void OnGuestSelected(object sender, SelectedGuestChangedEventArgs args)
+        //async void OnGuestSelected(object sender, SelectedItemChangedEventArgs args)
         //{
-        //    var Guest = args.SelectedGuest as Guest;
+        //    var Guest = args.SelectedItem as Guest;
         //    if (Guest == null)
         //        return;
 
@@ -36,6 +36,15 @@ namespace DormitoryApp.Pages
         //    // Manually deselect Guest.
         //    GuestsListView.SelectedGuest = null;
         //}
+
+        async void OnGuestSelected(object sender, SelectedItemChangedEventArgs args)
+        {
+            if (((ListView)sender).SelectedItem != null)
+            {
+                ((ListView)sender).SelectedItem = null;
+                await Navigation.PushModalAsync(new NavigationPage(new VisitListPage()));
+            }
+        }
 
         async void AddGuest_Clicked(object sender, EventArgs e)
         {

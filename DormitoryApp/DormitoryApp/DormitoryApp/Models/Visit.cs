@@ -8,5 +8,6 @@ namespace DormitoryApp.Models
     {
         public string Id { get; set; }
         public DateTime ArrivalTime { get; set; }
+        public bool Visited { get; set; }
     }
 }

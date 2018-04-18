@@ -3,9 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DormitoryApp.Pages.DormListPage"
              Title="Dorms">
+    
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add"  Clicked="AddDorm_Clicked"/>
     </ContentPage.ToolbarItems>
+    
 
     <ContentPage.Content>
         <StackLayout>
@@ -16,7 +18,9 @@
                 RefreshCommand="{Binding LoadDormsCommand}"
                 IsPullToRefreshEnabled="true"
                 IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                CachingStrategy="RecycleElement">
+                CachingStrategy="RecycleElement"
+                ItemSelected="OnDormSelected"
+                      >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

@@ -23,6 +23,7 @@ namespace DormitoryApp.Pages
             InitializeComponent();
 
             BindingContext = viewModel = new GuardsViewModel();
+            NavigationPage.SetHasNavigationBar(this, false);
         }
 
         //async void OnGuardSelected(object sender, SelectedGuardChangedEventArgs args)

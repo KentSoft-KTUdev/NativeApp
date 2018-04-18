@@ -16,9 +16,9 @@ namespace DormitoryApp.Services
             Visits = new List<Visit>();
             var mockVisits = new List<Visit>
             {
-                new Visit { Id = Guid.NewGuid().ToString(), ArrivalTime=DateTime.MaxValue},
-                new Visit { Id = Guid.NewGuid().ToString(), ArrivalTime=DateTime.MaxValue},
-                new Visit { Id = Guid.NewGuid().ToString(), ArrivalTime=DateTime.MaxValue},
+                new Visit { Id = "Done", ArrivalTime=DateTime.MaxValue, Visited = true},
+                new Visit { Id = "Not done", ArrivalTime=DateTime.MaxValue, Visited = false},
+                new Visit { Id = Guid.NewGuid().ToString(), ArrivalTime=DateTime.MaxValue, Visited = false},
             };
 
             foreach (var Visit in mockVisits)

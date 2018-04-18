@@ -16,7 +16,8 @@
                 RefreshCommand="{Binding LoadGuestsCommand}"
                 IsPullToRefreshEnabled="true"
                 IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                CachingStrategy="RecycleElement">
+                CachingStrategy="RecycleElement"
+                ItemSelected="OnGuestSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

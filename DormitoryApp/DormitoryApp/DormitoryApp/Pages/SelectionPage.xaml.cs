@@ -23,23 +23,15 @@ namespace DormitoryApp.Pages
         }
         async void Admin_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new ResidentListPage());
+            await Navigation.PushAsync(new AdminPage());
         }
         async void Guard_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new RoomListPage());
+            await Navigation.PushAsync(new GuardPage());
         }
         async void Guest_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new GuardListPage());
-        }
-        async void Test1_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new DormListPage());
-        }
-        async void Test2_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new VisitListPage());
         }
     }
 }

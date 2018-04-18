@@ -23,6 +23,7 @@ namespace DormitoryApp.Pages
             InitializeComponent();
 
             BindingContext = viewModel = new DormsViewModel();
+            NavigationPage.SetHasNavigationBar(this, false);
         }
 
         //async void OnDormSelected(object sender, SelectedDormChangedEventArgs args)
@@ -36,6 +37,15 @@ namespace DormitoryApp.Pages
         //    // Manually deselect Dorm.
         //    DormsListView.SelectedDorm = null;
         //}
+
+        async void OnDormSelected(object sender, SelectedItemChangedEventArgs args)
+        {
+            if (((ListView)sender).SelectedItem != null)
+            {
+                ((ListView)sender).SelectedItem = null;
+                await Navigation.PushModalAsync(new NavigationPage(new RoomListPage()));
+            }
+        }
 
         async void AddDorm_Clicked(object sender, EventArgs e)
         {
