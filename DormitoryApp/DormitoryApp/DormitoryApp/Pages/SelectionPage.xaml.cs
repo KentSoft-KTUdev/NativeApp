@@ -33,5 +33,13 @@ namespace DormitoryApp.Pages
         {
             await Navigation.PushAsync(new GuardListPage());
         }
+        async void Test1_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new DormListPage());
+        }
+        async void Test2_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new VisitListPage());
+        }
     }
 }

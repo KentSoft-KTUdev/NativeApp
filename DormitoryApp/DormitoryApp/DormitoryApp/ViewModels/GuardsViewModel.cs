@@ -21,11 +21,11 @@ namespace DormitoryApp.ViewModels
             Guards = new ObservableCollection<Guard>();
             LoadGuardsCommand = new Command(async () => await ExecuteLoadGuardsCommand());
 
-            MessagingCenter.Subscribe<NewGuardPage, Guard>(this, "AddGuard", async (obj, guest) =>
+            MessagingCenter.Subscribe<NewGuardPage, Guard>(this, "AddGuard", async (obj, guard) =>
             {
-                var _guest = guest as Guard;
-                Guards.Add(_guest);
-                await GuardDataStore.AddMemberAsync(_guest);
+                var _guard = guard as Guard;
+                Guards.Add(_guard);
+                await GuardDataStore.AddMemberAsync(_guard);
             });
         }
 
@@ -39,10 +39,10 @@ namespace DormitoryApp.ViewModels
             try
             {
                 Guards.Clear();
-                var guests = await GuardDataStore.GetMembersAsync(true);
-                foreach (var guest in guests)
+                var guards = await GuardDataStore.GetMembersAsync(true);
+                foreach (var guard in guards)
                 {
-                    Guards.Add(guest);
+                    Guards.Add(guard);
                 }
             }
             catch (Exception ex)
