@@ -12,9 +12,10 @@ namespace DormitoryApp.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Guest> GuestDataStore => DependencyService.Get<IDataStore<Guest>>() ?? new GuestMockDataStore();
-        public IDataStore<Resident> ResidentDataStore => DependencyService.Get<IDataStore<Resident>>() ?? new ResidentMockDataStore();
+        public IDataStore<Guest> GuestDataStore => DependencyService.Get<IDataStore<Guest>>() ?? new GuestDataStore();
+        public IDataStore<Resident> ResidentDataStore => DependencyService.Get<IDataStore<Resident>>() ?? new ResidentDataStore();
         public IDataStore<Room> RoomDataStore => DependencyService.Get<IDataStore<Room>>() ?? new RoomDataStore();
+        public IDataStore<Guard> GuardDataStore => DependencyService.Get<IDataStore<Guard>>() ?? new GuardDataStore();
 
         bool isBusy = false;
         public bool IsBusy

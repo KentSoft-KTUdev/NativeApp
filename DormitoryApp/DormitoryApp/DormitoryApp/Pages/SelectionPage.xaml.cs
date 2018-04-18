@@ -29,5 +29,9 @@ namespace DormitoryApp.Pages
         {
             await Navigation.PushAsync(new RoomListPage());
         }
+        async void Guest_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new GuardListPage());
+        }
     }
 }
