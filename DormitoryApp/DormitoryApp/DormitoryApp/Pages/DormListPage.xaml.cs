@@ -38,6 +38,15 @@ namespace DormitoryApp.Pages
         //    DormsListView.SelectedDorm = null;
         //}
 
+        async void OnDormSelected(object sender, SelectedItemChangedEventArgs args)
+        {
+            if (((ListView)sender).SelectedItem != null)
+            {
+                ((ListView)sender).SelectedItem = null;
+                await Navigation.PushModalAsync(new NavigationPage(new RoomListPage()));
+            }
+        }
+
         async void AddDorm_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushModalAsync(new NavigationPage(new NewDormPage()));

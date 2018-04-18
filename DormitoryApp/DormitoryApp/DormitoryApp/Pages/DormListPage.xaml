@@ -18,7 +18,9 @@
                 RefreshCommand="{Binding LoadDormsCommand}"
                 IsPullToRefreshEnabled="true"
                 IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                CachingStrategy="RecycleElement">
+                CachingStrategy="RecycleElement"
+                ItemSelected="OnDormSelected"
+                      >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
