@@ -23,6 +23,7 @@ namespace DormitoryApp.Pages
             InitializeComponent();
 
             BindingContext = viewModel = new DormsViewModel();
+            NavigationPage.SetHasNavigationBar(this, false);
         }
 
         //async void OnDormSelected(object sender, SelectedDormChangedEventArgs args)

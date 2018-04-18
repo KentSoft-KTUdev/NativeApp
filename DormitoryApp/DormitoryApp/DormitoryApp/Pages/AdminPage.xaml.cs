@@ -15,7 +15,7 @@ namespace DormitoryApp.Pages
 		public AdminPage ()
 		{
 			InitializeComponent ();
-            NavigationPage.SetHasNavigationBar(this, false);
+            //NavigationPage.SetHasNavigationBar(this, false);
         }
 	}
 }

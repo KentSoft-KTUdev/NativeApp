@@ -25,9 +25,21 @@ namespace DormitoryApp.Pages
             BindingContext = viewModel = new GuestsViewModel();
         }
 
-        //async void OnGuestSelected(object sender, SelectedGuestChangedEventArgs args)
+        //async void OnGuestSelected(object sender, SelectedItemChangedEventArgs args)
         //{
-        //    var Guest = args.SelectedGuest as Guest;
+        //    var Guest = args.SelectedItem as Guest;
+        //    if (Guest == null)
+        //        return;
+
+        //    await Navigation.PushAsync(new GuestDetailPage(new GuestDetailViewModel(Guest)));
+
+        //    // Manually deselect Guest.
+        //    GuestsListView.SelectedGuest = null;
+        //}
+
+        //async void OnGuestSelected(object sender, SelectedItemChangedEventArgs args)
+        //{
+        //    var Guest = args.SelectedItem as Guest;
         //    if (Guest == null)
         //        return;
 
