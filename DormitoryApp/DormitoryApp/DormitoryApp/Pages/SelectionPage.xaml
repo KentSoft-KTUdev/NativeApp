@@ -6,10 +6,12 @@
         <StackLayout VerticalOptions="CenterAndExpand"
                 HorizontalOptions="CenterAndExpand" >
             <Label Text="Please select" HorizontalOptions="Center" />
-            <Button Text="Guest" />
+            <Button Text="Guest" Clicked="Guest_Clicked" />
             <Button Text="Resident" Clicked="Resident_Clicked"/>
             <Button Text="Guard" Clicked="Guard_Clicked"/>
             <Button Text="Admin" Clicked="Admin_Clicked"/>
+            <Button Text="Test1" Clicked="Test1_Clicked"/>
+            <Button Text="Test2" Clicked="Test2_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

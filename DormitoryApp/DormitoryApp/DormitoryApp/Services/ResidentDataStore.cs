@@ -7,11 +7,11 @@ using DormitoryApp.Models;
 
 namespace DormitoryApp.Services
 {
-    class ResidentMockDataStore : IDataStore<Resident>
+    class ResidentDataStore : IDataStore<Resident>
     {
         List<Resident> Residents;
 
-        public ResidentMockDataStore()
+        public ResidentDataStore()
         {
             Residents = new List<Resident>();
             var mockResidents = new List<Resident>
