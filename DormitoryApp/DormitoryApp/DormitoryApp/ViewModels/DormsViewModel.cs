@@ -12,18 +12,18 @@ namespace DormitoryApp.ViewModels
 {
     class DormsViewModel : BaseViewModel
     {
-        public ObservableCollection<Dorm> Dorms { get; set; }
+        public ObservableCollection<Dormitory> Dorms { get; set; }
         public Command LoadDormsCommand { get; set; }
 
         public DormsViewModel()
         {
             Title = "Browse";
-            Dorms = new ObservableCollection<Dorm>();
+            Dorms = new ObservableCollection<Dormitory>();
             LoadDormsCommand = new Command(async () => await ExecuteLoadDormsCommand());
 
-            MessagingCenter.Subscribe<NewDormPage, Dorm>(this, "AddDorm", async (obj, dorm) =>
+            MessagingCenter.Subscribe<NewDormPage, Dormitory>(this, "AddDorm", async (obj, Dormitory) =>
             {
-                var _dorm = dorm as Dorm;
+                var _dorm = Dormitory as Dormitory;
                 Dorms.Add(_dorm);
                 await DormDataStore.AddMemberAsync(_dorm);
             });
@@ -40,9 +40,9 @@ namespace DormitoryApp.ViewModels
             {
                 Dorms.Clear();
                 var dorms = await DormDataStore.GetMembersAsync(true);
-                foreach (var dorm in dorms)
+                foreach (var Dormitory in dorms)
                 {
-                    Dorms.Add(dorm);
+                    Dorms.Add(Dormitory);
                 }
             }
             catch (Exception ex)

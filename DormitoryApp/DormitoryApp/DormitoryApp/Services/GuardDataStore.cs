@@ -16,9 +16,9 @@ namespace DormitoryApp.Services
             Guards = new List<Guard>();
             var mockGuards = new List<Guard>
             {
-                new Guard { Id = Guid.NewGuid().ToString(), Name = "FirstG"},
-                new Guard { Id = Guid.NewGuid().ToString(), Name = "SecondG"},
-                new Guard { Id = Guid.NewGuid().ToString(), Name = "ThirdG"},
+                new Guard { PersonalCode = Guid.NewGuid().ToString(), Name = "FirstG"},
+                new Guard { PersonalCode = Guid.NewGuid().ToString(), Name = "SecondG"},
+                new Guard { PersonalCode = Guid.NewGuid().ToString(), Name = "ThirdG"},
             };
 
             foreach (var Guard in mockGuards)
@@ -36,7 +36,7 @@ namespace DormitoryApp.Services
 
         public async Task<bool> UpdateMemberAsync(Guard Guard)
         {
-            var _Guard = Guards.Where((Guard arg) => arg.Id == Guard.Id).FirstOrDefault();
+            var _Guard = Guards.Where((Guard arg) => arg.PersonalCode == Guard.PersonalCode).FirstOrDefault();
             Guards.Remove(_Guard);
             Guards.Add(Guard);
 
@@ -45,15 +45,15 @@ namespace DormitoryApp.Services
 
         public async Task<bool> DeleteMemberAsync(Guard Guard)
         {
-            var _Guard = Guards.Where((Guard arg) => arg.Id == Guard.Id).FirstOrDefault();
+            var _Guard = Guards.Where((Guard arg) => arg.PersonalCode == Guard.PersonalCode).FirstOrDefault();
             Guards.Remove(_Guard);
 
             return await Task.FromResult(true);
         }
 
-        public async Task<Guard> GetMemberAsync(string id)
+        public async Task<Guard> GetMemberAsync(string PersonalCode)
         {
-            return await Task.FromResult(Guards.FirstOrDefault(s => s.Id == id));
+            return await Task.FromResult(Guards.FirstOrDefault(s => s.PersonalCode == PersonalCode));
         }
 
         public async Task<IEnumerable<Guard>> GetMembersAsync(bool forceRefresh = false)

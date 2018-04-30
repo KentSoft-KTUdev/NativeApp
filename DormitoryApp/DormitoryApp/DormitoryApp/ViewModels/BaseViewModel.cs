@@ -17,7 +17,7 @@ namespace DormitoryApp.ViewModels
         public IDataStore<Resident> ResidentDataStore => DependencyService.Get<IDataStore<Resident>>() ?? new ResidentDataStore();
         public IDataStore<Room> RoomDataStore => DependencyService.Get<IDataStore<Room>>() ?? new RoomDataStore();
         public IDataStore<Guard> GuardDataStore => DependencyService.Get<IDataStore<Guard>>() ?? new GuardDataStore();
-        public IDataStore<Dorm> DormDataStore => DependencyService.Get<IDataStore<Dorm>>() ?? new DormDataStore();
+        public IDataStore<Dormitory> DormDataStore => DependencyService.Get<IDataStore<Dormitory>>() ?? new DormDataStore();
         public IDataStore<Visit> VisitDataStore => DependencyService.Get<IDataStore<Visit>>() ?? new VisitDataStore();
 
         bool isBusy = false;
