@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using DormitoryApp.Models;
+using DataContract.Objects;
 
 namespace DormitoryApp.Pages
 {

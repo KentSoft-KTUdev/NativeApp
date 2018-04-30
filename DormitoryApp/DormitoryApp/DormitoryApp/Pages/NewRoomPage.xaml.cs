@@ -1,4 +1,4 @@
-﻿using DormitoryApp.Models;
+﻿using DataContract.Objects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +20,7 @@ namespace DormitoryApp.Pages
 
             room = new Room
             {
+                //čia string turi būt, shaliakei pasakyt reik
                 Number = "564654"
             };
 

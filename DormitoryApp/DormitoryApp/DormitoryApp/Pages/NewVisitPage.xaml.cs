@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-using DormitoryApp.Models;
+using DataContract.Objects;
 
 namespace DormitoryApp.Pages
 {
@@ -21,7 +21,7 @@ namespace DormitoryApp.Pages
 
             visit = new Visit
             {
-                ArrivalTime = DateTime.Now
+                //ArrivalTime = DateTime.Now
             };
 
             BindingContext = this;
@@ -29,14 +29,14 @@ namespace DormitoryApp.Pages
 
         async void Save_Clicked(object sender, EventArgs e)
         {
-            visit.ArrivalTime += VisitTimePicker.Time;
+            //visit.ArrivalTime += VisitTimePicker.Time;
             MessagingCenter.Send(this, "AddVisit", visit);
             await Navigation.PopModalAsync();
         }
 
         private void DatePicker_DateSelected(object sender, DateChangedEventArgs e)
         {
-            visit.ArrivalTime = e.NewDate;
+            //visit.ArrivalTime = e.NewDate;
         }
     }
 }

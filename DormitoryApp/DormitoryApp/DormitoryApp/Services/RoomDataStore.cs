@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DormitoryApp.Models;
+using DataContract.Objects;
 namespace DormitoryApp.Services
 {
     public class RoomDataStore : IDataStore<Room>

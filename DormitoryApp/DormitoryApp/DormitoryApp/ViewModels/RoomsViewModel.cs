@@ -1,4 +1,4 @@
-﻿using DormitoryApp.Models;
+﻿using DataContract.Objects;
 using DormitoryApp.Pages;
 using DormitoryApp.Services;
 using System;

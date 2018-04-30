@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-using DormitoryApp.Models;
+using DataContract.Objects;
 
 namespace DormitoryApp.Services
 {
@@ -16,9 +16,9 @@ namespace DormitoryApp.Services
             Guests = new List<Guest>();
             var mockGuests = new List<Guest>
             {
-                new Guest { Id = Guid.NewGuid().ToString(), Name = "LOL", ArrivalTime=DateTime.MaxValue },
-                new Guest { Id = Guid.NewGuid().ToString(), Name = "Vapau", ArrivalTime=DateTime.MinValue },
-                new Guest { Id = Guid.NewGuid().ToString(), Name = "OLOL", ArrivalTime=DateTime.Now},
+                new Guest { Id = Guid.NewGuid().ToString(), Name = "LOL"},
+                new Guest { Id = Guid.NewGuid().ToString(), Name = "Vapau"},
+                new Guest { Id = Guid.NewGuid().ToString(), Name = "OLOL"},
             };
 
             foreach (var Guest in mockGuests)

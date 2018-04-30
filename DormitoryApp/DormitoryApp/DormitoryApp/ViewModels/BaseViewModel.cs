@@ -5,7 +5,8 @@ using System.Runtime.CompilerServices;
 
 using Xamarin.Forms;
 using DormitoryApp.Services;
-using DormitoryApp.Models;
+
+using DataContract.Objects;
 
 
 namespace DormitoryApp.ViewModels
