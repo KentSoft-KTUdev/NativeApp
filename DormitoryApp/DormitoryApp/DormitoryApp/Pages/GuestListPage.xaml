@@ -25,7 +25,7 @@
                                 <Label Text="{Binding Name}" 
                        LineBreakMode="NoWrap" 
                        FontSize="16" />
-                                <Label Text="{Binding ArrivalTime}" 
+                                <Label Text="{Binding Surname}" 
                        LineBreakMode="NoWrap"
                        FontSize="13" />
                             </StackLayout>
