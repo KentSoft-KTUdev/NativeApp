@@ -21,7 +21,7 @@ namespace DormitoryApp.Pages
             room = new Room
             {
                 //čia string turi būt, shaliakei pasakyt reik
-                Number = "564654"
+                Number = 564654
             };
 
             BindingContext = this;

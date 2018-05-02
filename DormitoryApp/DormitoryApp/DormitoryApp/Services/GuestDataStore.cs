@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using DataContract.Objects;
+using DataContract.Data;
 
 namespace DormitoryApp.Services
 {
@@ -14,17 +15,20 @@ namespace DormitoryApp.Services
         public GuestDataStore()
         {
             Guests = new List<Guest>();
-            var mockGuests = new List<Guest>
-            {
-                new Guest { ID = Guid.NewGuid().ToString(), Name = "LOL"},
-                new Guest { ID = Guid.NewGuid().ToString(), Name = "Vapau"},
-                new Guest { ID = Guid.NewGuid().ToString(), Name = "OLOL"},
-            };
+            //var mockGuests = new List<Guest>
+            //{
+            //    new Guest { PersonalCode = Guid.NewGuid().ToString(), Name = "LOL"}, 
+            //    new Guest { PersonalCode = Guid.NewGuid().ToString(), Name = "Vapau"},
+            //    new Guest { PersonalCode = Guid.NewGuid().ToString(), Name = "OLOL"},
+            //};
 
-            foreach (var Guest in mockGuests)
-            {
-                Guests.Add(Guest);
-            }
+            //foreach (var Guest in mockGuests)
+            //{
+            //    Guests.Add(Guest);
+            //}
+
+            GuestRepository guestRepository = new GuestRepository();
+            Guests = guestRepository.GetAll();
         }
 
         public async Task<bool> AddMemberAsync(Guest Guest)
@@ -36,7 +40,7 @@ namespace DormitoryApp.Services
 
         public async Task<bool> UpdateMemberAsync(Guest Guest)
         {
-            var _Guest = Guests.Where((Guest arg) => arg.ID == Guest.ID).FirstOrDefault();
+            var _Guest = Guests.Where((Guest arg) => arg.PersonalCode == Guest.PersonalCode).FirstOrDefault();
             Guests.Remove(_Guest);
             Guests.Add(Guest);
 
@@ -45,15 +49,15 @@ namespace DormitoryApp.Services
 
         public async Task<bool> DeleteMemberAsync(Guest Guest)
         {
-            var _Guest = Guests.Where((Guest arg) => arg.ID == Guest.ID).FirstOrDefault();
+            var _Guest = Guests.Where((Guest arg) => arg.PersonalCode == Guest.PersonalCode).FirstOrDefault();
             Guests.Remove(_Guest);
 
             return await Task.FromResult(true);
         }
 
-        public async Task<Guest> GetMemberAsync(string ID)
+        public async Task<Guest> GetMemberAsync(string PersonalCode)
         {
-            return await Task.FromResult(Guests.FirstOrDefault(s => s.ID == ID));
+            return await Task.FromResult(Guests.FirstOrDefault(s => s.PersonalCode == Convert.ToInt32(PersonalCode)));
         }
 
         public async Task<IEnumerable<Guest>> GetMembersAsync(bool forceRefresh = false)
@@ -67,9 +71,9 @@ namespace DormitoryApp.Services
         //    Guests = new List<Guest>();
         //    var mockGuests = new List<Guest>
         //    {
-        //        new Guest { ID = Guid.NewGuid().ToString(), Name = "LOL", ArrivalTime=DateTime.MaxValue },
-        //        new Guest { ID = Guid.NewGuid().ToString(), Name = "Vapau", ArrivalTime=DateTime.MinValue },
-        //        new Guest { ID = Guid.NewGuid().ToString(), Name = "OLOL", ArrivalTime=DateTime.Now},
+        //        new Guest { PersonalCode = Guid.NewGuid().ToString(), Name = "LOL", ArrivalTime=DateTime.MaxValue },
+        //        new Guest { PersonalCode = Guid.NewGuid().ToString(), Name = "Vapau", ArrivalTime=DateTime.MinValue },
+        //        new Guest { PersonalCode = Guid.NewGuid().ToString(), Name = "OLOL", ArrivalTime=DateTime.Now},
         //    };
 
         //    foreach (var Guest in mockGuests)
@@ -87,7 +91,7 @@ namespace DormitoryApp.Services
 
         //public async Task<bool> UpdateGuestAsync(Guest Guest)
         //{
-        //    var _Guest = Guests.Where((Guest arg) => arg.ID == Guest.ID).FirstOrDefault();
+        //    var _Guest = Guests.Where((Guest arg) => arg.PersonalCode == Guest.PersonalCode).FirstOrDefault();
         //    Guests.Remove(_Guest);
         //    Guests.Add(Guest);
 
@@ -96,15 +100,15 @@ namespace DormitoryApp.Services
 
         //public async Task<bool> DeleteGuestAsync(Guest Guest)
         //{
-        //    var _Guest = Guests.Where((Guest arg) => arg.ID == Guest.ID).FirstOrDefault();
+        //    var _Guest = Guests.Where((Guest arg) => arg.PersonalCode == Guest.PersonalCode).FirstOrDefault();
         //    Guests.Remove(_Guest);
 
         //    return await Task.FromResult(true);
         //}
 
-        //public async Task<Guest> GetGuestAsync(string ID)
+        //public async Task<Guest> GetGuestAsync(string PersonalCode)
         //{
-        //    return await Task.FromResult(Guests.FirstOrDefault(s => s.ID == ID));
+        //    return await Task.FromResult(Guests.FirstOrDefault(s => s.PersonalCode == PersonalCode));
         //}
 
         //public async Task<IEnumerable<Guest>> GetGuestsAsync(bool forceRefresh = false)

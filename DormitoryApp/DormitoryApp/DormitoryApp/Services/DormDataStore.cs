@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
 using DataContract.Objects;
+using DataContract.Data;
+
 
 namespace DormitoryApp.Services
 {
@@ -14,17 +15,20 @@ namespace DormitoryApp.Services
         public DormDataStore()
         {
             Dormitorys = new List<Dormitory>();
-            var mockDormitorys = new List<Dormitory>
-            {
-                new Dormitory { ID = 1, Name = "First Dormitory"},
-                new Dormitory { ID = 2, Name = "Second Dormitory"},
-                new Dormitory { ID = 3, Name = "Third Dormitory"},
-            };
+            //var mockDormitorys = new List<Dormitory>
+            //{
+            //    new Dormitory { ID = 1, Name = "First Dormitory"},
+            //    new Dormitory { ID = 2, Name = "Second Dormitory"},
+            //    new Dormitory { ID = 3, Name = "Third Dormitory"},
+            //};
 
-            foreach (var Dormitory in mockDormitorys)
-            {
-                Dormitorys.Add(Dormitory);
-            }
+            //foreach (var Dormitory in mockDormitorys)
+            //{
+            //    Dormitorys.Add(Dormitory);
+            //}
+
+            DormitoryRepository dormitoryRepository = new DormitoryRepository();
+            Dormitorys = dormitoryRepository.GetAll();
         }
 
         public async Task<bool> AddMemberAsync(Dormitory Dormitory)
@@ -50,10 +54,10 @@ namespace DormitoryApp.Services
 
             return await Task.FromResult(true);
         }
-
+        
         public async Task<Dormitory> GetMemberAsync(string ID)
-        {
-            return await Task.FromResult(Dormitorys.FirstOrDefault(s => s.ID == ID));
+        {            
+            return await Task.FromResult(Dormitorys.FirstOrDefault(s => s.ID == Convert.ToInt32(ID)));
         }
 
         public async Task<IEnumerable<Dormitory>> GetMembersAsync(bool forceRefresh = false)

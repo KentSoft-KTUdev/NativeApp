@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using DataContract.Objects;
+using DataContract.Data;
 
 namespace DormitoryApp.Services
 {
@@ -14,17 +15,19 @@ namespace DormitoryApp.Services
         public ResidentDataStore()
         {
             Residents = new List<Resident>();
-            var mockResidents = new List<Resident>
-            {
-                new Resident { PersonalCode = Guid.NewGuid().ToString(), Name = "First" },
-                new Resident { PersonalCode = Guid.NewGuid().ToString(), Name = "Second" },
-                new Resident { PersonalCode = Guid.NewGuid().ToString(), Name = "Third"},
-            };
+            //var mockResidents = new List<Resident>
+            //{
+            //    new Resident { PersonalCode = Guid.NewGuid().ToString(), Name = "First" },
+            //    new Resident { PersonalCode = Guid.NewGuid().ToString(), Name = "Second" },
+            //    new Resident { PersonalCode = Guid.NewGuid().ToString(), Name = "Third"},
+            //};
 
-            foreach (var Resident in mockResidents)
-            {
-                Residents.Add(Resident);
-            }
+            //foreach (var Resident in mockResidents)
+            //{
+            //    Residents.Add(Resident);
+            //}
+            ResidentRepository residentRepository = new ResidentRepository();
+            Residents = residentRepository.GetAll();
         }
 
         public async Task<bool> AddMemberAsync(Resident Resident)
@@ -53,7 +56,7 @@ namespace DormitoryApp.Services
 
         public async Task<Resident> GetMemberAsync(string PersonalCode)
         {
-            return await Task.FromResult(Residents.FirstOrDefault(s => s.PersonalCode == PersonalCode));
+            return await Task.FromResult(Residents.FirstOrDefault(s => s.PersonalCode == Convert.ToInt32(PersonalCode)));
         }
 
         public async Task<IEnumerable<Resident>> GetMembersAsync(bool forceRefresh = false)
