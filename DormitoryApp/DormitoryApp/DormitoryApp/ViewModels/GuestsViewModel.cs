@@ -7,7 +7,7 @@ using Xamarin.Forms;
 
 using DataContract.Objects;
 using DormitoryApp.Pages;
-
+using System.Linq;
 
 namespace DormitoryApp.ViewModels
 {
@@ -27,6 +27,14 @@ namespace DormitoryApp.ViewModels
                 var _guest = guest as Guest;
                 Guests.Add(_guest);
                 await GuestDataStore.AddMemberAsync(_guest);
+            });
+
+            MessagingCenter.Subscribe<GuestListPage, Guest>(this, "DeleteGuest", async (obj, guest) =>
+            {
+                var _guest = Guests.Where((Guest arg) => arg.PersonalCode == guest.PersonalCode).FirstOrDefault();
+                //var _guest = guest as Guest;
+                Guests.Remove(_guest);
+                await GuestDataStore.DeleteMemberAsync(_guest);
             });
         }
 

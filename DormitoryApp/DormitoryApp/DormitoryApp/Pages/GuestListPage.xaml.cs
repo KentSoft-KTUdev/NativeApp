@@ -65,5 +65,23 @@ namespace DormitoryApp.Pages
             if (viewModel.Guests.Count == 0)
                 viewModel.LoadGuestsCommand.Execute(null);
         }
+
+        void OnTap(object sender, ItemTappedEventArgs e)
+        {
+            DisplayAlert("Item Tapped", e.Item.ToString(), "Ok");
+        }
+
+        void OnEdit(object sender, EventArgs e)
+        {
+            var item = (MenuItem)sender;
+            DisplayAlert("More Context Action", item.CommandParameter + " more context action", "OK");
+        }
+
+        void OnDelete(object sender, EventArgs e)
+        {
+            var item = (MenuItem)sender;
+            var guest = item.CommandParameter as Guest;
+            MessagingCenter.Send(this, "DeleteGuest", guest);
+        }
     }
 }

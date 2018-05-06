@@ -54,9 +54,27 @@ namespace DormitoryApp.ViewModels
             {
                 Visits.Clear();
                 var dorms = await VisitDataStore.GetMembersAsync(true);
+
                 foreach (var dorm in dorms)
                 {
-                    Visits.Add(dorm);
+                    if (Title == "History")
+                    {
+                        if (dorm.IsOver)
+                        {
+                            Visits.Add(dorm);
+                        }
+                    }
+                    else if (Title == "Upcoming")
+                    {
+                        if (!dorm.IsOver)
+                        {
+                            Visits.Add(dorm);
+                        }
+                    }
+                    else
+                    {
+                        Visits.Add(dorm);
+                    }
                 }
             }
             catch (Exception ex)

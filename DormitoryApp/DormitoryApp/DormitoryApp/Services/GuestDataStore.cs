@@ -51,7 +51,7 @@ namespace DormitoryApp.Services
         {
             var _Guest = Guests.Where((Guest arg) => arg.PersonalCode == Guest.PersonalCode).FirstOrDefault();
             Guests.Remove(_Guest);
-
+            guestRepository.Delete(Guest);
             return await Task.FromResult(true);
         }
 
