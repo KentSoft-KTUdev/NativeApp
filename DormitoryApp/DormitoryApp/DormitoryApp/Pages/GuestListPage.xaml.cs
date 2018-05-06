@@ -80,8 +80,9 @@ namespace DormitoryApp.Pages
         void OnDelete(object sender, EventArgs e)
         {
             var item = (MenuItem)sender;
-            var guest = item.CommandParameter as Guest;
-            MessagingCenter.Send(this, "DeleteGuest", guest);
+            var guest = item.CommandParameter;
+            Guest _guest = guest as Guest;
+            MessagingCenter.Send(this, "DeleteGuest", _guest);
         }
     }
 }

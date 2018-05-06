@@ -31,8 +31,8 @@ namespace DormitoryApp.ViewModels
 
             MessagingCenter.Subscribe<GuestListPage, Guest>(this, "DeleteGuest", async (obj, guest) =>
             {
-                var _guest = Guests.Where((Guest arg) => arg.PersonalCode == guest.PersonalCode).FirstOrDefault();
-                //var _guest = guest as Guest;
+                //var _guest = Guests.Where((Guest arg) => arg.PersonalCode == guest.PersonalCode).FirstOrDefault();
+                var _guest = guest as Guest;
                 Guests.Remove(_guest);
                 await GuestDataStore.DeleteMemberAsync(_guest);
             });

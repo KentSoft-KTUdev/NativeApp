@@ -25,8 +25,8 @@
                                 <!-- CommandParameter is the command to pass to the clicked event handler. Because these are menu items, 
 							not cells managed by the ListView, CommandParameter is neccesary to determine which 
 							cell the context action was taken on. -->
-                                <MenuItem Clicked="OnEdit" Text="Edit" CommandParameter="{Binding Guest}" />
-                                <MenuItem Clicked="OnDelete" Text="Delete" IsDestructive="true" CommandParameter="{Binding Guest}" />
+                                <MenuItem Clicked="OnEdit" Text="Edit" CommandParameter="{Binding .}" />
+                                <MenuItem Clicked="OnDelete" Text="Delete" IsDestructive="true" CommandParameter="{Binding .}" />
                             </ViewCell.ContextActions>
                             <StackLayout Padding="10">
                                 <Label Text="{Binding Name}" 
