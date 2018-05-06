@@ -21,7 +21,9 @@ namespace DormitoryApp.Pages
 
             guest = new Guest
             {
-                Name = "VP"
+                Name = "",
+                Surname = "",
+                PersonalCode = Guid.NewGuid().GetHashCode()
             };
 
             BindingContext = this;
@@ -29,10 +31,21 @@ namespace DormitoryApp.Pages
 
         async void Save_Clicked(object sender, EventArgs e)
         {
-            
-            //guest.ArrivalTime += GuestTimePicker.Time;
-            MessagingCenter.Send(this, "AddGuest", guest);
-            await Navigation.PopModalAsync();
+            if (guest.Name != "" && guest.Surname != "")
+            {
+                //guest.ArrivalTime += GuestTimePicker.Time;
+
+                MessagingCenter.Send(this, "AddGuest", guest);
+
+                guest = new Guest
+                {
+                    Name = "",
+                    Surname = "",
+                    PersonalCode = Guid.NewGuid().GetHashCode()
+                };
+
+                await Navigation.PopModalAsync();
+            }
         }
 
         private void DatePicker_DateSelected(object sender, DateChangedEventArgs e)

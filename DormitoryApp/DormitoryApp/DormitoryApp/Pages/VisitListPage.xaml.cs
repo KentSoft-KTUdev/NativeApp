@@ -17,12 +17,20 @@ namespace DormitoryApp.Pages
     public partial class VisitListPage : ContentPage
     {
         VisitsViewModel viewModel;
+        Guest selectedGuest;
 
         public VisitListPage()
         {
             InitializeComponent();
 
             BindingContext = viewModel = new VisitsViewModel();
+        }
+
+        public VisitListPage(Guest selectedGuest)
+        {
+            InitializeComponent();
+            this.selectedGuest = selectedGuest;
+            BindingContext = viewModel = new VisitsViewModel(selectedGuest);
         }
 
         //async void OnVisitSelected(object sender, SelectedVisitChangedEventArgs args)
@@ -39,7 +47,7 @@ namespace DormitoryApp.Pages
 
         async void AddVisit_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new NewVisitPage()));
+            await Navigation.PushModalAsync(new NavigationPage(new NewVisitPage(selectedGuest)));
         }
 
         protected override void OnAppearing()

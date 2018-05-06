@@ -11,7 +11,7 @@ namespace DormitoryApp.Services
     public class VisitDataStore : IDataStore<Visit>
     {
         List<Visit> Visits;
-
+        VisitRepository visitRepository = new VisitRepository();
         public VisitDataStore()
         {
             Visits = new List<Visit>();
@@ -26,14 +26,14 @@ namespace DormitoryApp.Services
             //{
             //    Visits.Add(Visit);
             //}
-            VisitRepository visitRepository = new VisitRepository();
+            
             Visits = visitRepository.GetAll();
         }
 
         public async Task<bool> AddMemberAsync(Visit Visit)
         {
             Visits.Add(Visit);
-
+            visitRepository.Create(Visit);
             return await Task.FromResult(true);
         }
 

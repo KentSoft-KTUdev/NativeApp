@@ -11,7 +11,7 @@ namespace DormitoryApp.Services
     public class GuestDataStore : IDataStore<Guest>
     {
         List<Guest> Guests;
-
+        GuestRepository guestRepository = new GuestRepository();
         public GuestDataStore()
         {
             Guests = new List<Guest>();
@@ -27,14 +27,14 @@ namespace DormitoryApp.Services
             //    Guests.Add(Guest);
             //}
 
-            GuestRepository guestRepository = new GuestRepository();
+            
             Guests = guestRepository.GetAll();
         }
 
         public async Task<bool> AddMemberAsync(Guest Guest)
         {
             Guests.Add(Guest);
-
+            guestRepository.Create(Guest);
             return await Task.FromResult(true);
         }
 

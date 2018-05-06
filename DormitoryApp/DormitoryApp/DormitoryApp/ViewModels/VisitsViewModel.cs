@@ -29,6 +29,20 @@ namespace DormitoryApp.ViewModels
             });
         }
 
+        public VisitsViewModel(Guest selectedGuest)
+        {
+            Title = "Browse";
+            Visits = new ObservableCollection<Visit>();
+            LoadVisitsCommand = new Command(async () => await ExecuteLoadVisitsCommand(selectedGuest));
+
+            MessagingCenter.Subscribe<NewVisitPage, Visit>(this, "AddVisit", async (obj, dorm) =>
+            {
+                var _dorm = dorm as Visit;
+                Visits.Add(_dorm);
+                await VisitDataStore.AddMemberAsync(_dorm);
+            });
+        }
+
         async Task ExecuteLoadVisitsCommand()
         {
             if (IsBusy)
@@ -43,6 +57,35 @@ namespace DormitoryApp.ViewModels
                 foreach (var dorm in dorms)
                 {
                     Visits.Add(dorm);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        async Task ExecuteLoadVisitsCommand(Guest selectedGuest)
+        {
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
+            try
+            {
+                Visits.Clear();
+                var dorms = await VisitDataStore.GetMembersAsync(true);
+                foreach (var dorm in dorms)
+                {
+                    if (dorm.Guest.PersonalCode == selectedGuest.PersonalCode)
+                    {
+                        Visits.Add(dorm);
+                    }
                 }
             }
             catch (Exception ex)
