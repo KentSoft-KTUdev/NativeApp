@@ -34,7 +34,12 @@ namespace DormitoryApp.Pages
             visit = new Visit
             {
                 VisitRegDateTime = DateTime.MinValue,
-                Guest = selectedGuest
+                GuestId = selectedGuest.PersonalCode,
+                IsOver = false,
+                VisitEndDateTime = DateTime.MaxValue,
+                ResidentId = 123,
+                GuardId = 123,
+                DormitoryId = 1
             };
 
             BindingContext = this;

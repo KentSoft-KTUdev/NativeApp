@@ -6,7 +6,7 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add"  Clicked="AddGuest_Clicked"/>
     </ContentPage.ToolbarItems>
-    
+
     <ContentPage.Content>
         <StackLayout>
             <ListView x:Name="GuestListView" 
@@ -23,11 +23,14 @@
                         <ViewCell>
                             <StackLayout Padding="10">
                                 <Label Text="{Binding Name}" 
-                       LineBreakMode="NoWrap" 
-                       FontSize="16" />
+                                   LineBreakMode="NoWrap" 
+                                   FontSize="16" />
                                 <Label Text="{Binding Surname}" 
-                       LineBreakMode="NoWrap"
-                       FontSize="13" />
+                                   LineBreakMode="NoWrap"
+                                   FontSize="16" />
+                                <Label Text="{Binding PersonalCode}" 
+                                   LineBreakMode="NoWrap"
+                                   FontSize="13" />
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

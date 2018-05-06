@@ -79,12 +79,12 @@ namespace DormitoryApp.ViewModels
             try
             {
                 Visits.Clear();
-                var dorms = await VisitDataStore.GetMembersAsync(true);
-                foreach (var dorm in dorms)
+                var visits = await VisitDataStore.GetMembersAsync(true);
+                foreach (var visit in visits)
                 {
-                    if (dorm.Guest.PersonalCode == selectedGuest.PersonalCode)
+                    if (visit.GuestId == selectedGuest.PersonalCode)
                     {
-                        Visits.Add(dorm);
+                        Visits.Add(visit);
                     }
                 }
             }

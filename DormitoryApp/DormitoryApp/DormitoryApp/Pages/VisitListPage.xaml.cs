@@ -24,6 +24,7 @@ namespace DormitoryApp.Pages
             InitializeComponent();
 
             BindingContext = viewModel = new VisitsViewModel();
+            NavigationPage.SetHasNavigationBar(this, false);
         }
 
         public VisitListPage(Guest selectedGuest)

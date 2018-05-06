@@ -42,14 +42,15 @@ namespace DormitoryApp.Pages
 
             if (((ListView)sender).SelectedItem != null)
             {
-                ((ListView)sender).SelectedItem = null;
-
                 var Guest = args.SelectedItem as Guest;
                 if (Guest == null)
                     return;
 
+                
                 await Navigation.PushModalAsync(new NavigationPage(new VisitListPage(Guest)));
+                ((ListView)sender).SelectedItem = null;
             }
+
         }
 
         async void AddGuest_Clicked(object sender, EventArgs e)
