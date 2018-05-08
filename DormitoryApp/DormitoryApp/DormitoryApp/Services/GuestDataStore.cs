@@ -12,22 +12,9 @@ namespace DormitoryApp.Services
     {
         List<Guest> Guests;
         GuestRepository guestRepository = new GuestRepository();
+        VisitRepository visitRepository = new VisitRepository();
         public GuestDataStore()
         {
-            Guests = new List<Guest>();
-            //var mockGuests = new List<Guest>
-            //{
-            //    new Guest { PersonalCode = Guid.NewGuid().ToString(), Name = "LOL"}, 
-            //    new Guest { PersonalCode = Guid.NewGuid().ToString(), Name = "Vapau"},
-            //    new Guest { PersonalCode = Guid.NewGuid().ToString(), Name = "OLOL"},
-            //};
-
-            //foreach (var Guest in mockGuests)
-            //{
-            //    Guests.Add(Guest);
-            //}
-
-            
             Guests = guestRepository.GetAll();
         }
 
@@ -50,6 +37,13 @@ namespace DormitoryApp.Services
         public async Task<bool> DeleteMemberAsync(Guest Guest)
         {
             var _Guest = Guests.Where((Guest arg) => arg.PersonalCode == Guest.PersonalCode).FirstOrDefault();
+
+            List<Visit> visitsToDelete = visitRepository.GetAll().Where((Visit visit) => visit.GuestId == _Guest.PersonalCode).ToList();
+            foreach (var visit in visitsToDelete)
+            {
+                visitRepository.Delete(visit.ID);
+            }
+
             Guests.Remove(_Guest);
             guestRepository.Delete(_Guest.PersonalCode);
             return await Task.FromResult(true);
@@ -64,56 +58,5 @@ namespace DormitoryApp.Services
         {
             return await Task.FromResult(Guests);
         }
-        //List<Guest> Guests;
-
-        //public MockDataStore()
-        //{
-        //    Guests = new List<Guest>();
-        //    var mockGuests = new List<Guest>
-        //    {
-        //        new Guest { PersonalCode = Guid.NewGuid().ToString(), Name = "LOL", ArrivalTime=DateTime.MaxValue },
-        //        new Guest { PersonalCode = Guid.NewGuid().ToString(), Name = "Vapau", ArrivalTime=DateTime.MinValue },
-        //        new Guest { PersonalCode = Guid.NewGuid().ToString(), Name = "OLOL", ArrivalTime=DateTime.Now},
-        //    };
-
-        //    foreach (var Guest in mockGuests)
-        //    {
-        //        Guests.Add(Guest);
-        //    }
-        //}
-
-        //public async Task<bool> AddGuestAsync(Guest Guest)
-        //{
-        //    Guests.Add(Guest);
-
-        //    return await Task.FromResult(true);
-        //}
-
-        //public async Task<bool> UpdateGuestAsync(Guest Guest)
-        //{
-        //    var _Guest = Guests.Where((Guest arg) => arg.PersonalCode == Guest.PersonalCode).FirstOrDefault();
-        //    Guests.Remove(_Guest);
-        //    Guests.Add(Guest);
-
-        //    return await Task.FromResult(true);
-        //}
-
-        //public async Task<bool> DeleteGuestAsync(Guest Guest)
-        //{
-        //    var _Guest = Guests.Where((Guest arg) => arg.PersonalCode == Guest.PersonalCode).FirstOrDefault();
-        //    Guests.Remove(_Guest);
-
-        //    return await Task.FromResult(true);
-        //}
-
-        //public async Task<Guest> GetGuestAsync(string PersonalCode)
-        //{
-        //    return await Task.FromResult(Guests.FirstOrDefault(s => s.PersonalCode == PersonalCode));
-        //}
-
-        //public async Task<IEnumerable<Guest>> GetGuestsAsync(bool forceRefresh = false)
-        //{
-        //    return await Task.FromResult(Guests);
-        //}
     }
 }
