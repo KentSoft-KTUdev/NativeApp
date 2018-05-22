@@ -29,15 +29,15 @@
                                 <MenuItem Clicked="OnDelete" Text="Delete" IsDestructive="true" CommandParameter="{Binding .}" />
                             </ViewCell.ContextActions>
                             <StackLayout Padding="10">
-                                <Label Text="{Binding Name}" 
+                                <Label Text="{Binding FullName}" 
                                    LineBreakMode="NoWrap" 
-                                   FontSize="16" />
-                                <Label Text="{Binding Surname}" 
+                                   FontSize="18"/>
+                                <!--<Label Text="{Binding Surname}" 
                                    LineBreakMode="NoWrap"
-                                   FontSize="16" />
-                                <Label Text="{Binding PersonalCode}" 
+                                   FontSize="16" />-->
+                                <!--<Label Text="{Binding PersonalCode}" 
                                    LineBreakMode="NoWrap"
-                                   FontSize="13" />
+                                   FontSize="13" />-->
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

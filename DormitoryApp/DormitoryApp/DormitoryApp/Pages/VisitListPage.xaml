@@ -23,10 +23,10 @@
                             <StackLayout Padding="10">
                                 <Label Text="{Binding VisitRegDateTime}" 
                                    LineBreakMode="NoWrap"
-                                   FontSize="13" />
-                                <Label Text="{Binding GuestId}" 
+                                   FontSize="18" />
+                                <!--<Label Text="{Binding GuestId}" 
                                    LineBreakMode="NoWrap"
-                                   FontSize="13" />
+                                   FontSize="13" />-->
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

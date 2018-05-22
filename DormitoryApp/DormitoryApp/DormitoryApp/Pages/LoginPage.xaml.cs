@@ -28,6 +28,7 @@ namespace DormitoryApp.Pages
             };
 
             BindingContext = this;
+            NavigationPage.SetHasNavigationBar(this, false);
         }
 
         async void Login_Clicked(object sender, EventArgs e)
