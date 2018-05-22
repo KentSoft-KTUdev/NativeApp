@@ -18,6 +18,7 @@ namespace DormitoryApp.Pages
 		{
 			InitializeComponent ();
             BindingContext = viewModel = new ResidentsViewModel();
+            NavigationPage.SetHasNavigationBar(this, false);
         }
         async void AddResident_Clicked(object sender, EventArgs e)
         {

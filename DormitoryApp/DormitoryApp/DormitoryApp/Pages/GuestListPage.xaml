@@ -6,7 +6,7 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add"  Clicked="AddGuest_Clicked"/>
     </ContentPage.ToolbarItems>
-    
+
     <ContentPage.Content>
         <StackLayout>
             <ListView x:Name="GuestListView" 
@@ -16,17 +16,28 @@
                 RefreshCommand="{Binding LoadGuestsCommand}"
                 IsPullToRefreshEnabled="true"
                 IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                CachingStrategy="RecycleElement">
+                CachingStrategy="RecycleElement"
+                ItemSelected="OnGuestSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
+                            <ViewCell.ContextActions>
+                                <!-- CommandParameter is the command to pass to the clicked event handler. Because these are menu items, 
+							not cells managed by the ListView, CommandParameter is neccesary to determine which 
+							cell the context action was taken on. -->
+                                <MenuItem Clicked="OnEdit" Text="Edit" CommandParameter="{Binding .}" />
+                                <MenuItem Clicked="OnDelete" Text="Delete" IsDestructive="true" CommandParameter="{Binding .}" />
+                            </ViewCell.ContextActions>
                             <StackLayout Padding="10">
-                                <Label Text="{Binding Name}" 
-                       LineBreakMode="NoWrap" 
-                       FontSize="16" />
-                                <Label Text="{Binding ArrivalTime}" 
-                       LineBreakMode="NoWrap"
-                       FontSize="13" />
+                                <Label Text="{Binding FullName}" 
+                                   LineBreakMode="NoWrap" 
+                                   FontSize="18"/>
+                                <!--<Label Text="{Binding Surname}" 
+                                   LineBreakMode="NoWrap"
+                                   FontSize="16" />-->
+                                <!--<Label Text="{Binding PersonalCode}" 
+                                   LineBreakMode="NoWrap"
+                                   FontSize="13" />-->
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

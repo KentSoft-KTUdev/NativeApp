@@ -5,16 +5,20 @@ using System.Runtime.CompilerServices;
 
 using Xamarin.Forms;
 using DormitoryApp.Services;
-using DormitoryApp.Models;
+
+using DataContract.Objects;
 
 
 namespace DormitoryApp.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Guest> GuestDataStore => DependencyService.Get<IDataStore<Guest>>() ?? new GuestMockDataStore();
-        public IDataStore<Resident> ResidentDataStore => DependencyService.Get<IDataStore<Resident>>() ?? new ResidentMockDataStore();
+        public IDataStore<Guest> GuestDataStore => DependencyService.Get<IDataStore<Guest>>() ?? new GuestDataStore();
+        public IDataStore<Resident> ResidentDataStore => DependencyService.Get<IDataStore<Resident>>() ?? new ResidentDataStore();
         public IDataStore<Room> RoomDataStore => DependencyService.Get<IDataStore<Room>>() ?? new RoomDataStore();
+        public IDataStore<Guard> GuardDataStore => DependencyService.Get<IDataStore<Guard>>() ?? new GuardDataStore();
+        public IDataStore<Dormitory> DormDataStore => DependencyService.Get<IDataStore<Dormitory>>() ?? new DormDataStore();
+        public IDataStore<Visit> VisitDataStore => DependencyService.Get<IDataStore<Visit>>() ?? new VisitDataStore();
 
         bool isBusy = false;
         public bool IsBusy

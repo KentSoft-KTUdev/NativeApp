@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DormitoryApp.Pages.LoginPage">
+    <ContentPage.Content>
+        <StackLayout Spacing="20" Padding="15">
+            <Label Text="Username" FontSize="Medium" />
+            <Entry Text="{Binding user.username}" FontSize="Small"/>
+            <Label Text="Password" FontSize="Medium" />
+            <Entry Text="{Binding user.password}" FontSize="Small"/>
+            <Button Text="Login" Clicked="Login_Clicked"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

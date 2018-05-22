@@ -10,9 +10,11 @@
         <StackLayout Spacing="20" Padding="15">
             <Label Text="Name" FontSize="Medium" />
             <Entry Text="{Binding guest.Name}" FontSize="Small" />
-            <Label Text="Date" FontSize="Medium" />
+            <Label Text="Surname" FontSize="Medium" />
+            <Entry Text="{Binding guest.Surname}" FontSize="Small" />
+            <!--<Label Text="Date" FontSize="Medium" />
             <DatePicker DateSelected="DatePicker_DateSelected" />
-            <TimePicker x:Name="GuestTimePicker"/>
+            <TimePicker x:Name="GuestTimePicker"/>-->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -1,5 +1,4 @@
-﻿using DataContract.Objects;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,20 +7,21 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+using DataContract.Objects;
+
 namespace DormitoryApp.Pages
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class NewRoomPage : ContentPage
+	public partial class NewGuardPage : ContentPage
 	{
-        public Room room { get; set; }
-        public NewRoomPage()
+        public Guard guard { get; set; }
+        public NewGuardPage()
         {
             InitializeComponent();
 
-            room = new Room
+            guard = new Guard
             {
-                //čia string turi būt, shaliakei pasakyt reik
-                Number = 564654
+                Name = "VP"
             };
 
             BindingContext = this;
@@ -29,7 +29,7 @@ namespace DormitoryApp.Pages
 
         async void Save_Clicked(object sender, EventArgs e)
         {
-            MessagingCenter.Send(this, "AddRoom", room);
+            MessagingCenter.Send(this, "AddGuard", guard);
             await Navigation.PopModalAsync();
         }
     }
