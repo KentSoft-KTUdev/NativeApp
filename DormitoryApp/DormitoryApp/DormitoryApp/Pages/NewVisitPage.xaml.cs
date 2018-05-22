@@ -14,6 +14,7 @@ namespace DormitoryApp.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NewVisitPage : ContentPage
     {
+        private DataContract.Data.ResidentRepository ResidentRepository = new DataContract.Data.ResidentRepository();
         public Visit visit { get; set; }
         public NewVisitPage()
         {
@@ -30,16 +31,16 @@ namespace DormitoryApp.Pages
         public NewVisitPage(Guest selectedGuest)
         {
             InitializeComponent();
-
+            long residentID = Objects.GlobalUser.globalUser.PersonalCode;
             visit = new Visit
             {
                 VisitRegDateTime = DateTime.MinValue,
                 GuestId = selectedGuest.PersonalCode,
                 IsOver = false,
                 VisitEndDateTime = DateTime.MaxValue,
-                ResidentId = 123,
-                GuardId = 123,
-                DormitoryId = 1
+                ResidentId = residentID,
+                GuardId = -1,
+                DormitoryId = ResidentRepository.Read(residentID).DormitoryId
             };
 
             BindingContext = this;

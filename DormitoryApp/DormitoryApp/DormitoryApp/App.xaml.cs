@@ -14,7 +14,8 @@ namespace DormitoryApp
 			InitializeComponent();
 
             //MainPage = new DormitoryApp.MainPage();
-            MainPage = new NavigationPage (new Pages.SelectionPage());
+            //MainPage = new NavigationPage (new Pages.SelectionPage());
+            MainPage = new NavigationPage (new Pages.LoginPage());
 		}
 
 		protected override void OnStart ()
