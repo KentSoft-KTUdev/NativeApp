@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 
-using DormitoryApp.Models;
+using DataContract.Objects;
 using DormitoryApp.Pages;
 
 namespace DormitoryApp.ViewModels

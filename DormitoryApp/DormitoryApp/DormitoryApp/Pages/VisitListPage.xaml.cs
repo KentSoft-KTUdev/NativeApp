@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-using DormitoryApp.Models;
+using DataContract.Objects;
 using DormitoryApp.Pages;
 
 namespace DormitoryApp.Pages
@@ -17,12 +17,22 @@ namespace DormitoryApp.Pages
     public partial class VisitListPage : ContentPage
     {
         VisitsViewModel viewModel;
+        Guest selectedGuest;
 
         public VisitListPage()
         {
             InitializeComponent();
-
             BindingContext = viewModel = new VisitsViewModel();
+            NavigationPage.SetHasNavigationBar(this, false);
+
+
+        }
+
+        public VisitListPage(Guest selectedGuest)
+        {
+            InitializeComponent();
+            this.selectedGuest = selectedGuest;
+            BindingContext = viewModel = new VisitsViewModel(selectedGuest);
         }
 
         //async void OnVisitSelected(object sender, SelectedVisitChangedEventArgs args)
@@ -39,7 +49,7 @@ namespace DormitoryApp.Pages
 
         async void AddVisit_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new NewVisitPage()));
+            await Navigation.PushModalAsync(new NavigationPage(new NewVisitPage(selectedGuest)));
         }
 
         protected override void OnAppearing()

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-using DormitoryApp.Models;
+using DataContract.Objects;
 using DormitoryApp.Pages;
 
 namespace DormitoryApp.Pages
@@ -39,11 +39,18 @@ namespace DormitoryApp.Pages
 
         async void OnGuestSelected(object sender, SelectedItemChangedEventArgs args)
         {
+
             if (((ListView)sender).SelectedItem != null)
             {
+                var Guest = args.SelectedItem as Guest;
+                if (Guest == null)
+                    return;
+
+                
+                await Navigation.PushModalAsync(new NavigationPage(new VisitListPage(Guest)));
                 ((ListView)sender).SelectedItem = null;
-                await Navigation.PushModalAsync(new NavigationPage(new VisitListPage()));
             }
+
         }
 
         async void AddGuest_Clicked(object sender, EventArgs e)
@@ -57,6 +64,25 @@ namespace DormitoryApp.Pages
 
             if (viewModel.Guests.Count == 0)
                 viewModel.LoadGuestsCommand.Execute(null);
+        }
+
+        void OnTap(object sender, ItemTappedEventArgs e)
+        {
+            DisplayAlert("Item Tapped", e.Item.ToString(), "Ok");
+        }
+
+        void OnEdit(object sender, EventArgs e)
+        {
+            var item = (MenuItem)sender;
+            DisplayAlert("More Context Action", item.CommandParameter + " more context action", "OK");
+        }
+
+        void OnDelete(object sender, EventArgs e)
+        {
+            var item = (MenuItem)sender;
+            var guest = item.CommandParameter;
+            Guest _guest = guest as Guest;
+            MessagingCenter.Send(this, "DeleteGuest", _guest);
         }
     }
 }

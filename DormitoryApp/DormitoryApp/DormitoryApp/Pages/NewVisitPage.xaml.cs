@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-using DormitoryApp.Models;
+using DataContract.Objects;
 
 namespace DormitoryApp.Pages
 {
@@ -21,7 +21,25 @@ namespace DormitoryApp.Pages
 
             visit = new Visit
             {
-                ArrivalTime = DateTime.Now
+                VisitRegDateTime = DateTime.MinValue
+            };
+
+            BindingContext = this;
+        }
+
+        public NewVisitPage(Guest selectedGuest)
+        {
+            InitializeComponent();
+
+            visit = new Visit
+            {
+                VisitRegDateTime = DateTime.MinValue,
+                GuestId = selectedGuest.PersonalCode,
+                IsOver = false,
+                VisitEndDateTime = DateTime.MaxValue,
+                ResidentId = 123,
+                GuardId = 123,
+                DormitoryId = 1
             };
 
             BindingContext = this;
@@ -29,14 +47,23 @@ namespace DormitoryApp.Pages
 
         async void Save_Clicked(object sender, EventArgs e)
         {
-            visit.ArrivalTime += VisitTimePicker.Time;
-            MessagingCenter.Send(this, "AddVisit", visit);
-            await Navigation.PopModalAsync();
+            if (visit.VisitRegDateTime != DateTime.MinValue)
+            {
+                visit.VisitRegDateTime += VisitTimePicker.Time;
+                MessagingCenter.Send(this, "AddVisit", visit);
+
+                visit = new Visit
+                {
+                    VisitRegDateTime = DateTime.MinValue
+                };
+
+                await Navigation.PopModalAsync();
+            }
         }
 
         private void DatePicker_DateSelected(object sender, DateChangedEventArgs e)
         {
-            visit.ArrivalTime = e.NewDate;
+            visit.VisitRegDateTime = e.NewDate;
         }
     }
 }

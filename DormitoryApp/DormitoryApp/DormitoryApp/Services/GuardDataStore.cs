@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-using DormitoryApp.Models;
+using DataContract.Objects;
+using DataContract.Data;
 
 namespace DormitoryApp.Services
 {
@@ -14,17 +15,19 @@ namespace DormitoryApp.Services
         public GuardDataStore()
         {
             Guards = new List<Guard>();
-            var mockGuards = new List<Guard>
-            {
-                new Guard { Id = Guid.NewGuid().ToString(), Name = "FirstG"},
-                new Guard { Id = Guid.NewGuid().ToString(), Name = "SecondG"},
-                new Guard { Id = Guid.NewGuid().ToString(), Name = "ThirdG"},
-            };
+            //var mockGuards = new List<Guard>
+            //{
+            //    new Guard { PersonalCode = Guid.NewGuid().ToString(), Name = "FirstG"},
+            //    new Guard { PersonalCode = Guid.NewGuid().ToString(), Name = "SecondG"},
+            //    new Guard { PersonalCode = Guid.NewGuid().ToString(), Name = "ThirdG"},
+            //};
 
-            foreach (var Guard in mockGuards)
-            {
-                Guards.Add(Guard);
-            }
+            //foreach (var Guard in mockGuards)
+            //{
+            //    Guards.Add(Guard);
+            //}
+            GuardRepository guardRepository = new GuardRepository();
+            Guards = guardRepository.GetAll();
         }
 
         public async Task<bool> AddMemberAsync(Guard Guard)
@@ -36,7 +39,7 @@ namespace DormitoryApp.Services
 
         public async Task<bool> UpdateMemberAsync(Guard Guard)
         {
-            var _Guard = Guards.Where((Guard arg) => arg.Id == Guard.Id).FirstOrDefault();
+            var _Guard = Guards.Where((Guard arg) => arg.PersonalCode == Guard.PersonalCode).FirstOrDefault();
             Guards.Remove(_Guard);
             Guards.Add(Guard);
 
@@ -45,15 +48,15 @@ namespace DormitoryApp.Services
 
         public async Task<bool> DeleteMemberAsync(Guard Guard)
         {
-            var _Guard = Guards.Where((Guard arg) => arg.Id == Guard.Id).FirstOrDefault();
+            var _Guard = Guards.Where((Guard arg) => arg.PersonalCode == Guard.PersonalCode).FirstOrDefault();
             Guards.Remove(_Guard);
 
             return await Task.FromResult(true);
         }
 
-        public async Task<Guard> GetMemberAsync(string id)
+        public async Task<Guard> GetMemberAsync(string PersonalCode)
         {
-            return await Task.FromResult(Guards.FirstOrDefault(s => s.Id == id));
+            return await Task.FromResult(Guards.FirstOrDefault(s => s.PersonalCode == Convert.ToInt32(PersonalCode)));
         }
 
         public async Task<IEnumerable<Guard>> GetMembersAsync(bool forceRefresh = false)

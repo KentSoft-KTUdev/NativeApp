@@ -2,63 +2,67 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DataContract.Objects;
+using DataContract.Data;
 
-using DormitoryApp.Models;
 
 namespace DormitoryApp.Services
 {
-    public class DormDataStore : IDataStore<Dorm>
+    public class DormDataStore : IDataStore<Dormitory>
     {
-        List<Dorm> Dorms;
+        List<Dormitory> Dormitorys;
 
         public DormDataStore()
         {
-            Dorms = new List<Dorm>();
-            var mockDorms = new List<Dorm>
-            {
-                new Dorm { Id = Guid.NewGuid().ToString(), Name = "First Dorm"},
-                new Dorm { Id = Guid.NewGuid().ToString(), Name = "Second Dorm"},
-                new Dorm { Id = Guid.NewGuid().ToString(), Name = "Third Dorm"},
-            };
+            Dormitorys = new List<Dormitory>();
+            //var mockDormitorys = new List<Dormitory>
+            //{
+            //    new Dormitory { ID = 1, Name = "First Dormitory"},
+            //    new Dormitory { ID = 2, Name = "Second Dormitory"},
+            //    new Dormitory { ID = 3, Name = "Third Dormitory"},
+            //};
 
-            foreach (var Dorm in mockDorms)
-            {
-                Dorms.Add(Dorm);
-            }
+            //foreach (var Dormitory in mockDormitorys)
+            //{
+            //    Dormitorys.Add(Dormitory);
+            //}
+
+            DormitoryRepository dormitoryRepository = new DormitoryRepository();
+            Dormitorys = dormitoryRepository.GetAll();
         }
 
-        public async Task<bool> AddMemberAsync(Dorm Dorm)
+        public async Task<bool> AddMemberAsync(Dormitory Dormitory)
         {
-            Dorms.Add(Dorm);
+            Dormitorys.Add(Dormitory);
 
             return await Task.FromResult(true);
         }
 
-        public async Task<bool> UpdateMemberAsync(Dorm Dorm)
+        public async Task<bool> UpdateMemberAsync(Dormitory Dormitory)
         {
-            var _Dorm = Dorms.Where((Dorm arg) => arg.Id == Dorm.Id).FirstOrDefault();
-            Dorms.Remove(_Dorm);
-            Dorms.Add(Dorm);
+            var _Dormitory = Dormitorys.Where((Dormitory arg) => arg.ID == Dormitory.ID).FirstOrDefault();
+            Dormitorys.Remove(_Dormitory);
+            Dormitorys.Add(Dormitory);
 
             return await Task.FromResult(true);
         }
 
-        public async Task<bool> DeleteMemberAsync(Dorm Dorm)
+        public async Task<bool> DeleteMemberAsync(Dormitory Dormitory)
         {
-            var _Dorm = Dorms.Where((Dorm arg) => arg.Id == Dorm.Id).FirstOrDefault();
-            Dorms.Remove(_Dorm);
+            var _Dormitory = Dormitorys.Where((Dormitory arg) => arg.ID == Dormitory.ID).FirstOrDefault();
+            Dormitorys.Remove(_Dormitory);
 
             return await Task.FromResult(true);
         }
-
-        public async Task<Dorm> GetMemberAsync(string id)
-        {
-            return await Task.FromResult(Dorms.FirstOrDefault(s => s.Id == id));
+        
+        public async Task<Dormitory> GetMemberAsync(string ID)
+        {            
+            return await Task.FromResult(Dormitorys.FirstOrDefault(s => s.ID == Convert.ToInt32(ID)));
         }
 
-        public async Task<IEnumerable<Dorm>> GetMembersAsync(bool forceRefresh = false)
+        public async Task<IEnumerable<Dormitory>> GetMembersAsync(bool forceRefresh = false)
         {
-            return await Task.FromResult(Dorms);
+            return await Task.FromResult(Dormitorys);
         }
     }
 }

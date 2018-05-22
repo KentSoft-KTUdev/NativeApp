@@ -11,7 +11,7 @@
                 </OnPlatform>
             </NavigationPage.Icon>
             <x:Arguments>
-                <views:DormListPage />
+                <views:VisitListPage />
             </x:Arguments>
         </NavigationPage>
 
@@ -22,7 +22,7 @@
                 </OnPlatform>
             </NavigationPage.Icon>
             <x:Arguments>
-                <views:DormListPage />
+                <views:VisitListPage />
             </x:Arguments>
         </NavigationPage>
     </TabbedPage.Children>

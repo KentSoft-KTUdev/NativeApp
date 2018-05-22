@@ -7,19 +7,19 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-using DormitoryApp.Models;
+using DataContract.Objects;
 
 namespace DormitoryApp.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NewDormPage : ContentPage
     {
-        public Dorm dorm { get; set; }
+        public Dormitory dorm { get; set; }
         public NewDormPage()
         {
             InitializeComponent();
 
-            dorm = new Dorm
+            dorm = new Dormitory
             {
                 Name = "DormName"
             };
